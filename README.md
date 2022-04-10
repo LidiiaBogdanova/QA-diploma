@@ -24,8 +24,9 @@
 
 7) Запустить веб-сервис командой в терминале "java -jar artifacts/aqa-shop.jar"
 
-8) Перейти в класс BookingTest(QA-diploma/src/test/java/ru/netology/test)
+8) В левом верхнем углу IDEE нажать "Project"
+9) Найти папку "test" (src/test/java/ru/netology/test), нажать правой кнопкой
 
-9) Запустить тесты командой Ctrl+Shift+F10
+10) В выплывшем меню нажать "Run tests"
 
 
