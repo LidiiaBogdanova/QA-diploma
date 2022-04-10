@@ -1,4 +1,4 @@
-﻿#Запуск приложения и дальнейшее ручное тестирование успешной дебетовой покупки
+﻿# Запуск приложения и дальнейшее ручное тестирование успешной дебетовой покупки
 
 PS C:\Users\Derian\Desktop\Diploma> java -jar artifacts/aqa-shop.jar
  
@@ -106,7 +106,7 @@ org.springframework.web.client.HttpServerErrorException$InternalServerError: 500
         at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
 
 
-#Автопрогон теста на успешную покупку
+# Автопрогон теста на успешную покупку
 
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
