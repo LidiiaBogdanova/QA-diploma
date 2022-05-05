@@ -5,7 +5,7 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - .data:/var/lib/mysql
+      - /data:/var/lib/mysql
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=touristicBooking
@@ -13,21 +13,21 @@ services:
       - MYSQL_PASSWORD=pass
 
   node-app:
-    build: .
+    build: gate-simulator
     image: node-app:1.0
     ports:
-     - '9999:9999'
+      - '9999:9999'
 
 
   postgresql:
     image: postgres:12-alpine
     ports:
-             - '5432:5432'
+      - '5432:5432'
     volumes:
-             - ./data:/var/lib/postgresql
+      - /data1:/var/lib/postgresql
     environment:
-             - POSTGRES_PASSWORD=pass
-             - POSTGRES_USER=app
-             - POSTGRES_DB=postgresql
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=app
+      - POSTGRES_DB=postgresql
 #команда для запуска приложения
 #java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/touristicBooking -P:jdbc.user=app -P:jdbc.password=pass

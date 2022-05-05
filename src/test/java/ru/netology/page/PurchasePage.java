@@ -3,6 +3,7 @@ package ru.netology.page;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
+import lombok.SneakyThrows;
 
 import java.time.Duration;
 
@@ -21,8 +22,7 @@ public class PurchasePage {
 
     public PurchasePage(boolean isDebit)
     {
-        this();
-        String headingText;
+         String headingText;
         if(isDebit)
             headingText = "Оплата по карте";
         else
@@ -32,7 +32,7 @@ public class PurchasePage {
         heading.shouldBe(visible);
     }
 
-    private PurchasePage()
+    public PurchasePage()
     {
          cardNumber = $("[placeholder = '0000 0000 0000 0000']");
          month = $("[placeholder = '08']");
@@ -42,7 +42,9 @@ public class PurchasePage {
          button = $$(".button").findBy(Condition.exactText("Продолжить"));
     }
 
-    public void inputData(String number, String monthData, String yearData, String holder, String cvc) {
+
+   @SneakyThrows
+   public void inputData(String number, String monthData, String yearData, String holder, String cvc) {
         cardNumber.setValue(number);
         month.setValue(monthData);
         year.setValue(yearData);

@@ -20,13 +20,20 @@
 
 5) Открыть проект в  Intellij IDEA Ultimate
 
-6) В терминале запустить команду "docker-compose up --build"
+6) В терминале запустить команду "docker-compose up --build -d"
 
-7) Запустить веб-сервис командой в терминале "java -jar artifacts/aqa-shop.jar"
+7) Запустить веб-сервис командой в терминале 
 
-8) В левом верхнем углу IDEE нажать "Project"
-9) Найти папку "test" (src/test/java/ru/netology/test), нажать правой кнопкой
+- для работы с БД MySQL: "java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/touristicBooking -P:jdbc.user=app -P:jdbc.password=pass" 
 
-10) В выплывшем меню нажать "Run tests"
+- для работы с БД MySQL или "java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql://localhost:5432/postgresql -P:jdbc.user=app -P:jdbc.password=pass" для работы с БД PostgreSQL
+
+
+8) В терминале ввести команду  
+
+- для работы с БД postgreSQL: "./gradlew test  -D:jdbc.url=jdbc:postgresql://localhost:5432/postgresql -D:jdbc.user=app -D:jdbc.password=pass"
+
+- для работы с БД MySQL: "./gradlew test -D:jdbc.url=jdbc:mysql://localhost:3306/touristicBooking -D:jdbc.user=app -D:jdbc.password=pass"
+
 
 

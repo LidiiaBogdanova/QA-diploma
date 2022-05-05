@@ -40,7 +40,9 @@ out/
 *.tar.gz
 *.rar
 
-.data/
+/.data/
+/.Postgrdata/
+
 
 ### Exclusions ###
 !gradle/wrapper/gradle-wrapper.jar
