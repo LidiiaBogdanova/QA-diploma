@@ -29,5 +29,3 @@ services:
       - POSTGRES_PASSWORD=pass
       - POSTGRES_USER=app
       - POSTGRES_DB=postgresql
-#команда для запуска приложения
-#java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/touristicBooking -P:jdbc.user=app -P:jdbc.password=pass

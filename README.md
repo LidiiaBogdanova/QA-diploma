@@ -24,16 +24,18 @@
 
 7) Запустить веб-сервис командой в терминале 
 
-- для работы с БД MySQL: "java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/touristicBooking -P:jdbc.user=app -P:jdbc.password=pass" 
+- для работы с БД MySQL: java  '-Dspring.datasource.url=jdbc:mysql://localhost:3306/touristicBooking' '-Dspring.datasource.username=app' '-Dspring.datasource.password=pass' -jar .\artifacts\aqa-shop.jar
 
-- для работы с БД MySQL или "java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql://localhost:5432/postgresql -P:jdbc.user=app -P:jdbc.password=pass" для работы с БД PostgreSQL
+
+- для работы с БД PostgreSQL java  '-Dspring.datasource.url=jdbc:postgresql://localhost:5432/postgresql' '-Dspring.datasource.username=app' '-Dspring.datasource.password=pass' -jar .\artifacts\aqa-shop.jar
 
 
 8) В терминале ввести команду  
 
-- для работы с БД postgreSQL: "./gradlew test  -D:jdbc.url=jdbc:postgresql://localhost:5432/postgresql -D:jdbc.user=app -D:jdbc.password=pass"
+- для работы с БД postgreSQL: ./gradlew test  '-Ddb.url=jdbc:postgresql://localhost:5432/postgresql' '-Ddb.user=app' '-Ddb.password=pass'
 
-- для работы с БД MySQL: "./gradlew test -D:jdbc.url=jdbc:mysql://localhost:3306/touristicBooking -D:jdbc.user=app -D:jdbc.password=pass"
+- для работы с БД MySQL: ./gradlew test '-Ddb.url=jdbc:mysql://localhost:3306/touristicBooking' '-Ddb.user=app' '-Ddb.password=pass' 
+
 
 
 

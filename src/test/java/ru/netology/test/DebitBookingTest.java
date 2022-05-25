@@ -1,8 +1,8 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Description;
 import io.qameta.allure.selenide.AllureSelenide;
-import jdk.jfr.Description;
 import lombok.var;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -42,7 +42,7 @@ public class DebitBookingTest {
         DataHelper.CardInfo data = DataHelper.getCorrectCardInfo();
         purchasePage.inputData(data.getCardNumber(), data.getMonth(), data.getYear(), data.getCardHolder(), data.getCvv());
         purchasePage.checkSuccessPurchaseNotification();
-        var status = DBHelper.checkStatus();
+        var status = DBHelper.checkDebitStatus();
         assertEquals("APPROVED", status);
     }
 
@@ -55,12 +55,12 @@ public class DebitBookingTest {
         DataHelper.CardInfo data = DataHelper.getIncorrectCardInfo();
         purchasePage.inputData(data.getCardNumber(), data.getMonth(), data.getYear(), data.getCardHolder(), data.getCvv());
         purchasePage.checkFailedPurchaseNotification();
-        var status = DBHelper.checkStatus();
+        var status = DBHelper.checkDebitStatus();
         assertEquals("DECLINED", status);
     }
 
     @Test
-    @Description("Проверяется, вылезает ли при необходимости уведомление об некорректном годе окончания срока действия карты, если указан прошедший год")
+    @Description("Тест проверяет, появляется ли при необходимости уведомление об некорректном годе окончания срока действия карты, если указан прошедший год")
     void shouldNotDebitBookWithInvalidYear() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -71,7 +71,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли при необходимости уведомление об ошибке при опечатке в поле Владелец")
+    @Description("Тест проверяет, появляется ли при необходимости уведомление об ошибке при опечатке в поле Владелец")
     void shouldNotDebitBookWithTypoInHolderName() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -82,7 +82,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли при необходимости уведомление о некорректном CVV при попытке ввести двухзначный CVV")
+    @Description("Тест проверяет, появляется ли при необходимости уведомление о некорректном CVV при попытке ввести двухзначный CVV")
     void shouldNotDebitBookWithTypoInCvv() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -95,7 +95,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли при необходимости уведомление о некорректном месяце окончания срока действия карты")
+    @Description("Тест проверяет, появляется ли при необходимости уведомление о некорректном месяце окончания срока действия карты")
     void shouldNotDebitBookWithTypoInMonth() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -108,7 +108,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли при необходимости уведомление об некорректном месяце окончания срока действия карты, " +
+    @Description("Тест проверяет, появляется ли при необходимости уведомление об некорректном месяце окончания срока действия карты, " +
             "если указан год, состоящий из одной цифры")
     void shouldNotDebitBookWithTypoInYear() {
         var dashboardPage = new DashboardPage();
@@ -122,7 +122,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли при необходимости уведомление о ошибке неверного формата данных в поле номер карты, " +
+    @Description("Тест проверяет, появляется ли при необходимости уведомление о ошибке неверного формата данных в поле номер карты, " +
             "если ввести номер карты меньшей длины")
     void shouldNotDebitBookWithTypoInCardNumber() {
         var dashboardPage = new DashboardPage();
@@ -136,7 +136,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом поле Владелец")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом поле Владелец")
     void shouldNotDebitBookWithEmptyHolderName() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -147,7 +147,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибкео пустом поле CVV")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом поле CVV")
     void shouldNotDebitBookWithEmptyCvv() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -158,7 +158,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о неверном формате данных в поле Месяц")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о неверном формате данных в поле Месяц")
     void shouldNotWriteLettersInMonth() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -169,7 +169,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о неверном формате данных в поле Год")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о неверном формате данных в поле Год")
     void shouldNotWriteLettersInYear() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -180,7 +180,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о неверном формате данных в поле Номер карты")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о неверном формате данных в поле Номер карты")
     void shouldNotWriteLettersInCardNumber() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -191,7 +191,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о неверном формате данных в поле CVV")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о неверном формате данных в поле CVV")
     void shouldNotWriteLettersInCvv() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -202,7 +202,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом поле Месяц")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом поле Месяц")
     void shouldNotDebitBookWithEmptyMonth() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -213,7 +213,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом  поле Год")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом  поле Год")
     void shouldNotDebitBookWithEmptyYear() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -224,7 +224,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом полет Номер карты")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом полет Номер карты")
     void shouldNotDebitBookWithEmptyCardNumber() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -235,7 +235,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом поле CVV, если попытаться заполнить его буквами")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом поле CVV, если попытаться заполнить его буквами")
     void CvvShouldNotHaveLetters() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -246,7 +246,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом поле Месяц, если попытаться заполнить его буквами")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом поле Месяц, если попытаться заполнить его буквами")
     void MonthShouldNotHaveLetters() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -257,7 +257,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом поле Год, если попытаться заполнить его буквами")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом поле Год, если попытаться заполнить его буквами")
     void YearShouldNotHaveLetters() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();
@@ -268,7 +268,7 @@ public class DebitBookingTest {
     }
 
     @Test
-    @Description("Проверяется, вылезает ли уведомление об ошибке о пустом поле Номер карты, если попытаться заполнить его буквами")
+    @Description("Тест проверяет, появляется ли уведомление об ошибке о пустом поле Номер карты, если попытаться заполнить его буквами")
     void CardNumberShouldNotHaveLetters() {
         var dashboardPage = new DashboardPage();
         var purchasePage = new PurchasePage();

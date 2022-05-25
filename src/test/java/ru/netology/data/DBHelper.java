@@ -21,9 +21,18 @@ public final class DBHelper {
 
 
     @SneakyThrows
-    public static String checkStatus() {
+    public static String checkDebitStatus() {
         QueryRunner runner = new QueryRunner();
         String query = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+        try (var conn = DriverManager.getConnection(url, user, password)) {
+            var status=runner.query(conn, query, new ScalarHandler<String>());
+            return  status;
+        }
+    }
+    @SneakyThrows
+    public static String checkCreditStatus() {
+        QueryRunner runner = new QueryRunner();
+        String query = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
         try (var conn = DriverManager.getConnection(url, user, password)) {
             var status=runner.query(conn, query, new ScalarHandler<String>());
             return  status;
