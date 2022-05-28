@@ -36,6 +36,8 @@
 
 - для работы с БД MySQL: ./gradlew test '-Ddb.url=jdbc:mysql://localhost:3306/touristicBooking' '-Ddb.user=app' '-Ddb.password=pass' 
 
+9) Для генерации отчета Allure ввести в терминале команду ./gradlew allureServe
+
 
 
 
